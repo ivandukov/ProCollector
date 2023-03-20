@@ -1,6 +1,6 @@
 import {Request, RequestHandler, Response} from "express";
 
-process.env.LEAGUE_API_KEY = 'RGAPI-7fa95b1c-c3dc-4f88-8b97-2c3f73d99844' // need to be change every 24h
+process.env.LEAGUE_API_KEY = 'apikey' // need to be change every 24h
 const LeagueJS = require('leaguejs');
 
 /**
