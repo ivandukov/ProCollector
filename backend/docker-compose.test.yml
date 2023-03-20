@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      target: build
+    depends_on:
+      - database
+      - db-lab-pgadmin4
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4000:4000"
+    command: npm run test
+
+  database:
+    image: postgres:12.2-alpine
+    ports:
+      - "5432:5432"
+    container_name: db-lab-postgres
+    environment:
+      - POSTGRES_USER=dbadmin
+      - POSTGRES_PASSWORD=dbadminpassword
+
+  db-lab-pgadmin4:
+    image: stefantruehl/db-lab-pgadmin4:6.2-1
+    ports:
+      - "5050:5050"
+    volumes:
+      - type: bind
+        source: ./exchange-folder
+        target: /var/lib/pgadmin/storage/user_domain.com/exchange-folder
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=secretpassword
+      - PGADMIN_ENABLE_TLS
+      - PGADMIN_LISTEN_PORT=5050
+
+
+volumes:
+  exchange-folder:

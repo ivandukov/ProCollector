@@ -1,0 +1,61 @@
+image: node:latest
+
+stages:
+  - compile
+  - package
+  - build
+  - test
+
+compileBackend:
+  stage: compile
+  script:
+    - cd backend/
+    - npm install
+    - npm run build
+
+compileFrontend:
+  stage: compile
+  script:
+    - cd frontend/
+    - yarn install
+    - yarn run build
+
+buildBackend:
+  stage: package
+  script:
+    - cd backend/
+    - npm install typescript -g
+    - npm install express
+    - npm run build
+    - npm pack
+  artifacts:
+    when: on_success
+    expire_in: 1 week
+    #paths:
+     # - jsog-typescript-*.tgz
+
+buildFrontend:
+  stage: package
+  script:
+    - cd frontend/
+    - yarn install
+    - yarn run build
+    - yarn pack
+  artifacts:
+    when: on_success
+    expire_in: 1 week
+
+testBackend:
+  stage: test
+  script:
+    - cd backend/
+    - npm install -g jest
+    - npm install --save-dev jest typescript ts-jest @types/jest
+    - npm run test
+
+testFrontend:
+  stage: test
+  script:
+    - cd frontend/
+    - yarn install
+    - yarn run test

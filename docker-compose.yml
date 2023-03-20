@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+
+  league_frontend:
+    container_name: league_frontend
+    restart: always
+    build:
+      context: ./frontend/
+      target: dependencies
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND-HOST=api
+      - BACKEND-PORT=4000
+    volumes:
+      - ./frontend/:/home/node/app
+  api:
+    build:
+      context: ./backend/
+      target: build
+    depends_on:
+      - database
+      - db-lab-pgadmin4
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4000:4000"
+    command: npm run start:dev
+
+  database:
+      image: postgres:12.2-alpine
+      ports:
+        - "5432:5432"
+      container_name: db-lab-postgres
+      environment:
+        - POSTGRES_USER=dbadmin
+        - POSTGRES_PASSWORD=dbadminpassword
+  db-lab-pgadmin4:
+      image: stefantruehl/db-lab-pgadmin4:6.2-1
+      ports:
+        - "5050:5050"
+      volumes:
+        - type: bind
+          source: ./exchange-folder
+          target: /var/lib/pgadmin/storage/user_domain.com/exchange-folder
+      environment:
+        - PGADMIN_DEFAULT_EMAIL=user@domain.com
+        - PGADMIN_DEFAULT_PASSWORD=secretpassword
+        - PGADMIN_ENABLE_TLS
+        - PGADMIN_LISTEN_PORT=5050
+
+volumes:
+  exchange-folder:

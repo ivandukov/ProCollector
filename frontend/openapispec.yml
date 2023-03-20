@@ -1,0 +1,769 @@
+openapi: 3.0.1
+info:
+  title: leagueoflegeds
+  version: '1.0'
+servers:
+  - url: 'http://localhost:4000'
+paths:
+  /auth/register:
+    post:
+      summary: ''
+      operationId: post-auth-register
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                password:
+                  type: string
+                summonerName:
+                  type: string
+                region:
+                  type: string
+              required:
+                - userName
+                - password
+                - summonerName
+                - region
+      description: a Endpiont to register a new user
+  /auth/login:
+    post:
+      summary: ''
+      operationId: post-auth-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                password:
+                  type: string
+              required:
+                - userName
+                - password
+      description: 'a Endpiont to login with userName and password '
+  /auth/update:
+    put:
+      summary: ''
+      operationId: put-auth-update
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: region
+        - schema:
+            type: string
+          in: query
+          name: summonerName
+        - schema:
+            type: string
+          in: query
+          name: userName
+      description: update summonerName for user
+  /riotApi/getSummonerByName/:
+    parameters: []
+    get:
+      responses:
+        '200':
+          description: Succcessful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummonerWithQueuesMatches'
+        '400':
+          description: Bad Request
+      operationId: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: region
+        - schema:
+            type: string
+          in: query
+          name: summonerName
+  /riotApi/getMatchDataById/:
+    parameters: []
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: Succcessful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchData'
+        '400':
+          description: Bad Request
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: region
+        - schema:
+            type: string
+          in: query
+          name: matchId
+  /guides:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-guides
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guide'
+      description: Endpoint to add a guide to logged user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                text:
+                  type: string
+                userId:
+                  type: string
+              required:
+                - title
+                - text
+                - userId
+    get:
+      summary: ''
+      operationId: get-guides
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guide'
+      description: Endpoint to get all guides
+      parameters: []
+    delete:
+      summary: ''
+      operationId: delete-guides
+      responses:
+        '204':
+          description: No Content
+      description: delete guide with given id
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: guideId
+  '/guides/byId/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-guides-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guide'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                title:
+                  type: string
+                text:
+                  type: string
+              required:
+                - userId
+                - title
+                - text
+      description: update guide from user
+    get:
+      summary: ''
+      operationId: get-guides-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guide'
+      description: Get a guide using an Id
+  /guides/userguides:
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guide'
+      operationId: get-guides-userguides
+      description: Endpoint to get all the guides for the logged user
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+  /guides/titleUser:
+    parameters: []
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guide'
+      operationId: get-guides-title-title
+      description: Endpoint to get a all guides with the given title and userId
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+        - schema:
+            type: string
+          in: query
+          name: title
+  /guides/titleAllUsers:
+    parameters: []
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guide'
+      description: Endpoint to get a guide with the given title from all Users
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: title
+  /guidecomments:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+      operationId: get-guidecomments
+      description: Endpoint to get all comments
+  '/guidecomments/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-guidecomments-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    $ref: '#/components/schemas/Comment'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                text:
+                  type: string
+              required:
+                - title
+                - text
+  /evaluation/getEvaluationMatch/:
+    parameters: []
+    get:
+      summary: 'GET evaluation for given match, region and summonerName'
+      responses:
+        '200':
+          description: Succcessful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evaluation'
+        '400':
+          description: Bad Request
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: region
+        - schema:
+            type: string
+          in: query
+          name: matchId
+        - schema:
+            type: string
+          in: query
+          name: summonerName
+      description: ''
+  /evaluation/addEvaluation/:
+    put:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                region:
+                  type: string
+                matchId:
+                  type: string
+                summonerName:
+                  type: string
+      description: add(s) Evaluation(s) for a match
+  /evaluation/getEvaluationUser:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evaluation'
+      operationId: get-evaluation-getEvaluationUser
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: matchId
+        - schema:
+            type: string
+          in: query
+          name: summonerName
+      description: get evaluation(s) for user
+  /summoner/updateSummoner:
+    put:
+      summary: ''
+      operationId: put-summoner-updateSummoner
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummonerWithQueuesMatches'
+      description: update Summoner
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: region
+        - schema:
+            type: string
+          in: query
+          name: summonerName
+  /follower/:
+    get:
+      summary: Your GET endpoint
+      operationId: get-follower-user
+      description: Gets the followers for particular user
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Follower'
+    post:
+      summary: ''
+      operationId: post-follower
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Follower'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                followerName:
+                  type: string
+                region:
+                  type: string
+                profileIconId:
+                  type: integer
+      description: add new follower to user
+  '/follower/{followerId}&{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: followerId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    delete:
+      operationId: delete-follower-followerId
+      responses:
+        '204':
+          description: No Content
+      description: delete follower from user
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the given user.
+          format: uuid
+        userName:
+          type: string
+        followers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Follower'
+        summonerName:
+          $ref: '#/components/schemas/SummonerWithQueuesMatches'
+      required:
+        - id
+        - userName
+        - summonerName
+    Summoner:
+      title: Summoner
+      allOf:
+        - properties:
+            id:
+              type: string
+            puuid:
+              type: string
+            name:
+              type: string
+            region:
+              type: string
+            profileIconId:
+              type: integer
+            summonerLevel:
+              type: number
+          required:
+            - id
+            - puuid
+            - name
+            - region
+            - profileIconId
+            - summonerLevel
+      type: object
+    Follower:
+      title: Follower
+      allOf:
+        - properties:
+            id:
+              type: string
+            followerName:
+              type: string
+            region:
+              type: string
+            profileIconId:
+              type: integer
+            users:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+      type: object
+    Queue:
+      title: Queue
+      allOf:
+        - properties:
+            queueType:
+              type: string
+            tier:
+              type: string
+            rank:
+              type: string
+            leaguePoints:
+              type: integer
+            wins:
+              type: integer
+            losses:
+              type: integer
+          required:
+            - queueType
+            - tier
+            - rank
+            - leaguePoints
+            - wins
+            - losses
+      type: object
+    Match:
+      title: Match
+      allOf:
+        - properties:
+            id:
+              type: string
+            evaluations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Evaluation'
+          required:
+            - id
+      type: object
+    SummonerWithQueuesMatches:
+      title: SummonerWithQueueMatch
+      allOf:
+        - $ref: '#/components/schemas/Summoner'
+        - type: object
+          properties:
+            queues:
+              type: array
+              items:
+                $ref: '#/components/schemas/Queue'
+            matches:
+              type: array
+              items:
+                $ref: '#/components/schemas/Match'
+    MatchData:
+      title: Participant
+      allOf:
+        - properties:
+            matchId:
+              type: string
+            gameDuration:
+              type: string
+            participants:
+              type: array
+              items:
+                $ref: '#/components/schemas/Participant'
+            teams:
+              type: array
+              items:
+                $ref: '#/components/schemas/Team'
+            gameCreation:
+              type: string
+      type: object
+    Participant:
+      title: Participant
+      allOf:
+        - properties:
+            summonerName:
+              type: string
+            teamId:
+              type: integer
+            teamPosition:
+              type: string
+            championName:
+              type: string
+            kills:
+              type: integer
+            assists:
+              type: integer
+            deaths:
+              type: integer
+            item0:
+              type: integer
+            item1:
+              type: integer
+            item2:
+              type: integer
+            item3:
+              type: integer
+            item4:
+              type: integer
+            item5:
+              type: integer
+            item6:
+              type: integer
+            win:
+              type: boolean
+            totalDamageDealtToChampions:
+              type: integer
+            totalMinionsKilled:
+              type: integer
+      type: object
+    Guide:
+      title: Guide
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        text:
+          type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        creator:
+          $ref: '#/components/schemas/User'
+      required:
+        - id
+        - title
+        - text
+        - comments
+        - creator
+    Comment:
+      title: Comment
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        text:
+          type: string
+          maxLength: 500
+        owner:
+          $ref: '#/components/schemas/User'
+      required:
+        - id
+        - title
+        - text
+    Team:
+      title: Team
+      type: object
+      properties:
+        teamId:
+          type: integer
+        bans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ban'
+    Ban:
+      title: Ban
+      type: object
+      properties:
+        championId:
+          type: integer
+    Evaluation:
+      title: Evaluation
+      type: object
+      description: Evaluation for a Match
+      properties:
+        summonerName:
+          type: string
+        tag:
+          type: string
+        description:
+          type: string
+        feedback:
+          type: string
+        lane:
+          type: string
+    Openapispec_Evaluation:
+      title: Evaluation
+      type: object
+      description: Evaluation for a Match
+      properties:
+        summonerName:
+          type: string
+        tag:
+          type: string
+        description:
+          type: string
+        feedback:
+          type: string
+        lane:
+          type: string
