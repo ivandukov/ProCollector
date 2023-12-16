@@ -11,7 +11,6 @@ export const FollowerList = () => {
     const {user} = useLoggedInUser();
     const api = useApiClient();
 
-
     const [followers, setFollowers] = useState<Follower[] | null>(null);
 
     const getFollowers = async () => {
@@ -31,11 +30,9 @@ export const FollowerList = () => {
     }
 
     useEffect(() => {
-
         if (user !== null) {
             getFollowers();
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
@@ -49,7 +46,6 @@ export const FollowerList = () => {
                     height={'100%'}
             >
                 <Heading as="h2" fontSize={"xl"} mb={2}>Following</Heading>
-
                 <VStack width={"100%"}>
                     {followers != null && followers.length > 0 ?
                         followers.map(follower => {

@@ -44,12 +44,12 @@ export const MainStatsCard = ({matches, playerInfo}: MainStatsCardProps) => {
             {
                 matchData.length === 20 ?
                     <>
-                        <GridItem  colSpan={1}>
+                        <GridItem colSpan={1}>
                             <WinLostStatsCard matches={matchData}
                                               playerInfo={playerInfo}/>
 
                         </GridItem>
-                        <GridItem  colSpan={1}>
+                        <GridItem colSpan={1}>
                             <MinionKillsCard matches={matchData}
                                              playerInfo={playerInfo}/>
 

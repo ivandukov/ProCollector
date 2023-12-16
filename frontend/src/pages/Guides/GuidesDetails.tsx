@@ -1,24 +1,5 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {
-    Box,
-    Button,
-    chakra,
-    Editable,
-    EditableInput,
-    EditablePreview,
-    Heading,
-    IconButton,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
-    useDisclosure,
-    useToast,
-    VStack
-} from "@chakra-ui/react";
+import {Box, Button, chakra, Editable, EditableInput, EditablePreview, Heading, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast, VStack} from "@chakra-ui/react";
 import React, {useEffect} from "react";
 import {ContentState, EditorState} from 'draft-js';
 import {Editor} from "react-draft-wysiwyg";

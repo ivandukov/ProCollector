@@ -12,10 +12,10 @@ if (!container) throw new Error('Failed to find the root element');
 const root = ReactDOM.createRoot(container)
 
 root.render(
-        <BrowserRouter>
-            <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
-            <App/>
-        </BrowserRouter>
+    <BrowserRouter>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
+        <App/>
+    </BrowserRouter>
 )
 
 // If you want your app to work offline and load faster, you can change

@@ -15,5 +15,5 @@ export const useLoggedInUser = () => {
         setUserFromStorage();
     }, []);
 
-    return {user,setUserFromStorage, setUser};
+    return {user, setUserFromStorage, setUser};
 }

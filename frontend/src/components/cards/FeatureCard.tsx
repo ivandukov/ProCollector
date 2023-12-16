@@ -10,7 +10,11 @@ export const FeatureCard = () => {
         document.dispatchEvent(event);
     }
 
-    const Feature = (props: { icon: string | number | boolean | ReactElement | ReactFragment | ReactPortal | null | undefined; title: string | number | boolean | ReactElement | ReactFragment | ReactPortal | null | undefined; children: string | number | boolean | ReactElement | ReactFragment | ReactPortal | null | undefined; }) => {
+    const Feature = (props: {
+        icon: string | number | boolean | ReactElement | ReactFragment | ReactPortal | null | undefined;
+        title: string | number | boolean | ReactElement | ReactFragment | ReactPortal | null | undefined;
+        children: string | number | boolean | ReactElement | ReactFragment | ReactPortal | null | undefined;
+    }) => {
         return (
             <Box>
                 <Icon

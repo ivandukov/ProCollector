@@ -1,18 +1,4 @@
-import {
-    Avatar,
-    Box,
-    Collapse,
-    Divider,
-    HStack,
-    IconButton,
-    Link,
-    SimpleGrid,
-    Spinner,
-    Text,
-    Tooltip,
-    useDisclosure,
-    VStack
-} from "@chakra-ui/react";
+import {Avatar, Box, Collapse, Divider, HStack, IconButton, Link, SimpleGrid, Spinner, Text, Tooltip, useDisclosure, VStack} from "@chakra-ui/react";
 import {MatchData} from "../../../adapter/api/__generated";
 import {matchInfoNormalizer, NormalizedMatchData} from "../../../helper/MatchInfoNormalizer";
 import React, {useEffect, useState} from "react";
@@ -88,7 +74,7 @@ export const GameCard = ({match, playerData, isDashboard}: GameCardProps) => {
                             {normalizedData.items.map(item => (
                                 item !== 0 ?
                                     <Avatar key={item!}
-                                        size='md'
+                                            size='md'
                                             src={`http://ddragon.leagueoflegends.com/cdn/12.12.1/img/item/${item}.png`}/>
                                     :
                                     null

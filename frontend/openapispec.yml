@@ -90,7 +90,7 @@ paths:
           name: userName
       description: update summonerName for user
   /riotApi/getSummonerByName/:
-    parameters: []
+    parameters: [ ]
     get:
       responses:
         '200':
@@ -112,10 +112,10 @@ paths:
           in: query
           name: summonerName
   /riotApi/getMatchDataById/:
-    parameters: []
+    parameters: [ ]
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: [ ]
       responses:
         '200':
           description: Succcessful
@@ -135,7 +135,7 @@ paths:
           in: query
           name: matchId
   /guides:
-    parameters: []
+    parameters: [ ]
     post:
       summary: ''
       operationId: post-guides
@@ -176,7 +176,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Guide'
       description: Endpoint to get all guides
-      parameters: []
+      parameters: [ ]
     delete:
       summary: ''
       operationId: delete-guides
@@ -255,7 +255,7 @@ paths:
           in: query
           name: userId
   /guides/titleUser:
-    parameters: []
+    parameters: [ ]
     get:
       summary: Your GET endpoint
       responses:
@@ -279,7 +279,7 @@ paths:
           in: query
           name: title
   /guides/titleAllUsers:
-    parameters: []
+    parameters: [ ]
     get:
       summary: Your GET endpoint
       responses:
@@ -300,7 +300,7 @@ paths:
   /guidecomments:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: [ ]
       responses:
         '200':
           description: OK
@@ -349,7 +349,7 @@ paths:
                 - title
                 - text
   /evaluation/getEvaluationMatch/:
-    parameters: []
+    parameters: [ ]
     get:
       summary: 'GET evaluation for given match, region and summonerName'
       responses:
@@ -403,7 +403,7 @@ paths:
   /evaluation/getEvaluationUser:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: [ ]
       responses:
         '200':
           description: OK

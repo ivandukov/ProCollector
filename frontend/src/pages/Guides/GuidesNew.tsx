@@ -1,14 +1,4 @@
-import {
-    Box,
-    Button,
-    chakra,
-    Editable,
-    EditableInput,
-    EditablePreview,
-    Heading,
-    useToast,
-    VStack
-} from "@chakra-ui/react";
+import {Box, Button, chakra, Editable, EditableInput, EditablePreview, Heading, useToast, VStack} from "@chakra-ui/react";
 import {Editor} from "react-draft-wysiwyg";
 import React from "react";
 import {EditorState} from "draft-js";

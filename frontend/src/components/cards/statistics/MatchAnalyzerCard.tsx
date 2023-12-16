@@ -5,7 +5,6 @@ import {useApiClient} from "../../../adapter/api/useApiClient";
 import {Evaluation, MatchData} from "../../../adapter/api/__generated";
 import {PlayerSearchType} from "../../PlayerSearch";
 
-
 type MatchAnalyzerCardProps = {
     match: MatchData
     playerData: PlayerSearchType
@@ -25,28 +24,24 @@ export const MatchAnalyzerCard = ({match, playerData, isDashboard}: MatchAnalyze
     const [evaluation, setEvaluation] = useState<Evaluation[] | null>(null);
     const [evaluationStage, setEvaluationStage] = useState<EVALUATION_STAGE>(EVALUATION_STAGE.INITIAL);
 
-
-    async function evaluationHandler() {
-        try {
-            await api.evaluationAddEvaluationPut({
-                matchId: match.matchId,
-                region: playerData.region!,
-                summonerName: playerData.playerName,
-            })
-        } catch (e: any) {
-            if (e.response.status === 302) {
-                await evaluateGame();
+    useEffect(() => {
+        async function evaluationHandler() {
+            try {
+                await api.evaluationAddEvaluationPut({
+                    matchId: match.matchId,
+                    region: playerData.region!,
+                    summonerName: playerData.playerName,
+                })
+            } catch (e: any) {
+                if (e.response.status === 302) {
+                    await evaluateGame();
+                }
             }
         }
-    }
 
-
-    useEffect(() => {
         if (isDashboard) {
             evaluationHandler();
-
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const evaluateGame = async () => {

@@ -41,6 +41,7 @@ more information.
 - OpenApiGenerator
 
 ## **Landing Page**
+
 ![](landing_page.png)
 
 Bei der Landing Page kann man nach einem Summoner suchen, sich anmelden oder registrieren und alle erstellte Guides von den Usern zu betrachten.
@@ -51,33 +52,37 @@ Gabbo,
 Kakan
 
 ## **Login/Register**
+
 ![](login_register.png)
 
 Entweder mit vorhanden User anmelden oder einen neuen User registrieren.
 
 ## **Summoner Search**
+
 ![](summoner_search.png)
 
 Hier werden einen allgemeine Informationen zum Summoner angezeigt und seine letzten Spiele. Die Informationen werden direkt aus der RiotApi geladen.
 Wenn man angemeldet ist, kann mit mit einen klick auf das Summoner Icon einen Summonr folgen und man kann ein Match bewerten.
 
 ## **Dashboard**
+
 ![](dashboard.png)
 
 Beim Dashboard wird der zugehörige Summoner und Follower für den User aus der Datenbank geladen.
 Es ist möglich seine Follower zu entfernen und man kann auch den Summoner von dem User aktualisieren.
 
 ## **Evaluation**
+
 ![](evaluation.png)
 
 Für ein Match kann eine Bewertung erstellt werden. Jede Bewertung enthält eine Beschreibung.
 Wenn man sich im Dashboard befindet werden die Bewertungen in der Datenbank gespeichert, aber wenn man einen Match bewertet für gesuchten Summoner werden Bewertungen nur temporär angezeigt.
 
-
 ## **Guides**
-Es können alle Guides (All Guides) von allen Usern angezeigt werden und die Guides von den eingeloggten User (My Guides). Die Guides können mit den Titel gefiltert werden.
-Bei "My Guides" können Guides erstellt, bearbeitet und gelöscht werden. 
 
+Es können alle Guides (All Guides) von allen Usern angezeigt werden und die Guides von den eingeloggten User (My Guides). Die Guides können mit den Titel gefiltert werden.
+Bei "My Guides" können Guides erstellt, bearbeitet und gelöscht werden.
 
 ## **Settings**
+
 In den Einstellungen kann für einen eingeloggten User der Summoner geändert werden. Es wird zunächst in der Datenbank nachgeschaut ob dieser Summoner bereits vorhanden ist, wenn nicht wird der Summoner von der RiotApi geholt. 

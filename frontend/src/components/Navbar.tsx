@@ -1,15 +1,4 @@
-import {
-    Box,
-    Button,
-    chakra,
-    CloseButton,
-    Flex,
-    HStack,
-    IconButton,
-    useColorModeValue,
-    useDisclosure,
-    VStack
-} from "@chakra-ui/react";
+import {Box, Button, chakra, CloseButton, Flex, HStack, IconButton, useColorModeValue, useDisclosure, VStack} from "@chakra-ui/react";
 import React from "react";
 import {AiOutlineMenu} from "react-icons/all";
 import {useNavigate} from "react-router-dom";
