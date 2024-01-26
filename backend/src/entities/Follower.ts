@@ -12,7 +12,7 @@ export class Follower {
     @Property()
     followerName: string;
 
-    @Property({ type: 'int' })
+    @Property({type: 'int'})
     profileIconId: number;
 
     @ManyToMany(() => User, user => user.followers)

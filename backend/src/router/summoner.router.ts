@@ -1,6 +1,4 @@
-import { Router } from "express";
-import {
-} from "../controller/follower.controller";
+import {Router} from "express";
 import {updateSummoner} from "../controller/summoner.controller";
 
 export const summonerRouter = Router();

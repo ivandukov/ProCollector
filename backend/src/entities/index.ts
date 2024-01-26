@@ -1,5 +1,5 @@
 export * from "./User";
-export  * from "./Guide";
+export * from "./Guide";
 export * from "./GuideComment";
 export * from "./Summoner";
 export * from "./Queue";

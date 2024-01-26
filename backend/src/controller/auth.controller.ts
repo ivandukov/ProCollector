@@ -20,8 +20,7 @@ router.put("/update", async (req, res) => {
 
     const user = await DI.userRepository.findOne({
         userName: userName,
-    }, {populate: ["summonerName"]}).catch((e) => {
-        console.log(e);
+    }, {populate: ["summonerName"]}).catch(() => {
     });
     if (!user) {
         return res.status(400).json({errors: ["User does not exist"]});

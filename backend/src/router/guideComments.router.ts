@@ -1,4 +1,4 @@
-import { Router } from "express";
+import {Router} from "express";
 import {addComment, getAllGuidesComment} from "../controller/guideComments.controller";
 
 export const guideCommentsRouter = Router();

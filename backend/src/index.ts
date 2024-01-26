@@ -45,16 +45,16 @@ const corsOptions = {origin: "http://localhost:3000", credentials: true};
 app.use(cors(corsOptions));
 
 app.use(session({
-    secret: 'leageueoflegeds',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        sameSite: 'none',
-        httpOnly: true,
-        secure: false,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
-})
+        secret: 'leageueoflegeds',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            sameSite: 'none',
+            httpOnly: true,
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+        },
+    })
 )
 
 export const verifyAccess: RequestHandler = (req, res, next) => {

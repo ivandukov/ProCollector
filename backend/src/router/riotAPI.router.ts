@@ -1,8 +1,5 @@
-import { Router } from "express";
-import {
-  getMatchDataById,
-  getSummonerByName
-} from "../controller/externalAPIController/riotAPI.controller";
+import {Router} from "express";
+import {getMatchDataById, getSummonerByName} from "../controller/externalAPIController/riotAPI.controller";
 
 /**
  *

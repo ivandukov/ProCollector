@@ -1,9 +1,5 @@
-import { Router } from "express";
-import {
-  addEvaluation,
-  getEvaluationMatch,
-  getEvaluationUser
-} from "../controller/evaluation.controller";
+import {Router} from "express";
+import {addEvaluation, getEvaluationMatch, getEvaluationUser} from "../controller/evaluation.controller";
 
 
 export const evaluationRouter = Router();

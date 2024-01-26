@@ -12,7 +12,7 @@ export class Guide {
     @Property()
     title: string;
 
-    @Property( {type: "text", length: 6000} )
+    @Property({type: "text", length: 6000})
     text: string;
 
     @OneToMany(() => GuideComment, guidecomment => guidecomment.guide)
